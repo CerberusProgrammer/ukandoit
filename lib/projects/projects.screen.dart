@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ukandoit/projects/project.controller.dart';
 import 'package:ukandoit/projects/project.create.dart';
 import 'package:ukandoit/theme/theme.controller.dart';
+import 'package:ukandoit/widgets/drawer.dart';
 import 'package:ukandoit/widgets/ukan.floatingbutton.dart';
 import 'package:ukandoit/widgets/ukan.task-card.dart';
 
@@ -15,8 +16,27 @@ class ProjectsScreen extends StatelessWidget {
     final themeController = Get.find<ThemeController>();
 
     return Scaffold(
+      drawer: const DrawerScreen(),
       appBar: AppBar(
         title: const Text('Projects'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SearchAnchor(
+              viewElevation: 1,
+              viewHintText: 'Buscar proyectos',
+              dividerColor: Get.find<ThemeController>().primaryColor.value,
+              viewBackgroundColor: Colors.white,
+              isFullScreen: true,
+              suggestionsBuilder: ((context, controller) {
+                return [];
+              }),
+              builder: (BuildContext context, SearchController controller) {
+                return const Icon(Icons.search);
+              },
+            ),
+          )
+        ],
       ),
       body: Obx(
         () => ListView(

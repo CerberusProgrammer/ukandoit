@@ -45,6 +45,7 @@ class UkanFloatingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late Color substitueColor;
+    bool isDark = Get.find<ThemeController>().isDarkTheme.value;
     if (color == null) {
       substitueColor = Get.find<ThemeController>().primaryColor.value;
     } else {
@@ -54,17 +55,31 @@ class UkanFloatingButton extends StatelessWidget {
     return SizedBox(
       width: _size,
       height: _size,
-      child: Card(
-        elevation: 0,
-        color: substitueColor.withOpacity(0.10),
-        child: InkWell(
-          onTap: onTap,
-          splashColor: substitueColor.withOpacity(0.25),
+      child: Container(
+        decoration: BoxDecoration(
+          color: isDark ? Colors.black : Colors.white,
           borderRadius: BorderRadius.circular(10),
-          child: Icon(
-            icon,
-            color: substitueColor,
-            size: _size / 2,
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            color: substitueColor.withOpacity(0.20),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: onTap,
+              splashColor: substitueColor.withOpacity(0.25),
+              hoverColor: substitueColor.withOpacity(0.05),
+              focusColor: substitueColor.withOpacity(0.05),
+              highlightColor: substitueColor.withOpacity(0.15),
+              borderRadius: BorderRadius.circular(10),
+              child: Icon(
+                icon,
+                color: substitueColor,
+                size: _size / 2,
+              ),
+            ),
           ),
         ),
       ),

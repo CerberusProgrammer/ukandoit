@@ -21,6 +21,7 @@ class ProjectsCreate extends StatelessWidget {
           projectController.projects.add(
             Project(
               name: 'New',
+              color: Colors.pink,
               tables: [],
             ),
           );
