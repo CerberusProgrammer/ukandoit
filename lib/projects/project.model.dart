@@ -14,4 +14,17 @@ class Project {
     this.color,
     this.icon,
   });
+
+  Map<String, dynamic> toJSON() => {
+        "name": name,
+        "tables": tables,
+        "description": description,
+        "color": color,
+        "icon": icon,
+      };
+
+  @override
+  String toString() {
+    return '${toJSON()}';
+  }
 }

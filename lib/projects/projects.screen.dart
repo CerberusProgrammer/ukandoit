@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ukandoit/projects/project.controller.dart';
 import 'package:ukandoit/projects/project.create.dart';
+import 'package:ukandoit/projects/project.edit.dart';
 import 'package:ukandoit/theme/theme.controller.dart';
 import 'package:ukandoit/widgets/ukan.floatingbutton.dart';
 import 'package:ukandoit/widgets/ukan.task-card.dart';
@@ -12,7 +13,7 @@ class ProjectsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final projectController = Get.find<ProjectController>().projects;
+    final projectController = Get.find<ProjectController>();
     final themeController = Get.find<ThemeController>();
 
     return Scaffold(
@@ -77,20 +78,30 @@ class ProjectsScreen extends StatelessWidget {
             ListView(
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              children: List.generate(projectController.length, (index) {
-                final color = projectController[index].color ??
+              children:
+                  List.generate(projectController.projects.length, (index) {
+                final color = projectController.projects[index].color ??
                     themeController.primaryColor.value;
 
                 return UkanTaskCard(
                   color: color,
-                  title: projectController[index].name,
-                  description: projectController[index].description ??
+                  title: projectController.projects[index].name,
+                  description: projectController.projects[index].description ??
                       "Without description.",
                   progress: 0.3,
                   onTap: () {},
+                  onEdit: () => Get.to(
+                    () => ProjectEdit(
+                      project: projectController.projects[index],
+                    ),
+                    transition: Transition.cupertino,
+                  ),
+                  onRemove: () => projectController.removeProject(
+                    projectController.projects[index],
+                  ),
                   tasksData: [
                     TaskValue(quantity: 10, icon: Icons.task),
-                    TaskValue(quantity: 10, icon: Icons.task),
+                    TaskValue(quantity: 2, icon: Icons.task),
                   ],
                 );
               }),
@@ -101,7 +112,7 @@ class ProjectsScreen extends StatelessWidget {
       floatingActionButton: UkanFloatingButton(
         icon: Icons.add,
         onTap: () => Get.to(
-          () => ProjectsCreate(),
+          () => const ProjectsCreate(),
           transition: Transition.cupertino,
         ),
       ),

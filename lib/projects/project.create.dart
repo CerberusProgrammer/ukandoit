@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ukandoit/projects/project.controller.dart';
 import 'package:ukandoit/projects/project.model.dart';
-import 'package:ukandoit/theme/theme.controller.dart';
 import 'package:ukandoit/widgets/ukan.floatingbutton.dart';
 
 class ProjectsCreate extends StatefulWidget {
@@ -50,10 +49,15 @@ class _ProjectsCreateState extends State<ProjectsCreate> {
                 nameController.text = value;
               }),
               controller: nameController,
+              cursorColor: colors[selectedColor],
               decoration: InputDecoration(
                 labelText: 'Name',
-                labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: colors[selectedColor],
+                ),
                 filled: true,
+                fillColor: colors[selectedColor].withOpacity(0.25),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -77,11 +81,16 @@ class _ProjectsCreateState extends State<ProjectsCreate> {
               onChanged: (value) => setState(() {
                 descriptionController.text = value;
               }),
+              cursorColor: colors[selectedColor],
               controller: descriptionController,
               decoration: InputDecoration(
                 labelText: 'Description',
-                labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: colors[selectedColor],
+                ),
                 filled: true,
+                fillColor: colors[selectedColor].withOpacity(0.25),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,

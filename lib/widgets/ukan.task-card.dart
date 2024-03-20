@@ -21,6 +21,8 @@ class UkanTaskCard extends StatelessWidget {
     required this.progress,
     required this.onTap,
     required this.tasksData,
+    this.onEdit,
+    this.onRemove,
   });
 
   final Color color;
@@ -28,6 +30,8 @@ class UkanTaskCard extends StatelessWidget {
   final String description;
   final double progress;
   final Function() onTap;
+  final Function()? onEdit;
+  final Function()? onRemove;
   final List<TaskValue> tasksData;
 
   @override
@@ -83,9 +87,10 @@ class UkanTaskCard extends StatelessWidget {
                       ),
                       itemBuilder: (BuildContext context) =>
                           <PopupMenuEntry<String>>[
-                        const PopupMenuItem<String>(
+                        PopupMenuItem<String>(
                           value: 'editar',
-                          child: Row(
+                          onTap: onEdit,
+                          child: const Row(
                             children: <Widget>[
                               Icon(Icons.edit, color: Colors.white),
                               Padding(
@@ -96,9 +101,10 @@ class UkanTaskCard extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const PopupMenuItem<String>(
+                        PopupMenuItem<String>(
                           value: 'eliminar',
-                          child: Row(
+                          onTap: onRemove,
+                          child: const Row(
                             children: <Widget>[
                               Icon(Icons.delete, color: Colors.white),
                               Padding(
