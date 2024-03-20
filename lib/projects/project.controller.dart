@@ -3,6 +3,7 @@ import 'package:ukandoit/projects/project.model.dart';
 
 class ProjectController extends GetxController {
   var projects = <Project>[].obs;
+  Rx<Project?> selectedProject = Rx<Project?>(null);
 
   void removeProject(Project project) {
     projects.remove(project);

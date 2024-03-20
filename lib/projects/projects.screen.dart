@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ukandoit/projects/project.controller.dart';
 import 'package:ukandoit/projects/project.create.dart';
 import 'package:ukandoit/projects/project.edit.dart';
+import 'package:ukandoit/projects/project.screen.dart';
 import 'package:ukandoit/theme/theme.controller.dart';
 import 'package:ukandoit/widgets/ukan.floatingbutton.dart';
 import 'package:ukandoit/widgets/ukan.task-card.dart';
@@ -42,8 +43,7 @@ class ProjectsScreen extends StatelessWidget {
                     suggestionsBuilder: ((context, controller) {
                       return [];
                     }),
-                    builder:
-                        (BuildContext context, SearchController controller) {
+                    builder: (context, controller) {
                       return const Icon(
                         Icons.search,
                         color: Colors.white,
@@ -89,7 +89,12 @@ class ProjectsScreen extends StatelessWidget {
                   description: projectController.projects[index].description ??
                       "Without description.",
                   progress: 0.3,
-                  onTap: () {},
+                  onTap: () => Get.to(
+                    () => ProjectScreen(
+                      project: projectController.projects[index],
+                    ),
+                    transition: Transition.cupertino,
+                  ),
                   onEdit: () => Get.to(
                     () => ProjectEdit(
                       project: projectController.projects[index],
