@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ukandoit/projects/project.controller.dart';
 import 'package:ukandoit/projects/projects.screen.dart';
+import 'package:ukandoit/tables/table.controller.dart';
 import 'package:ukandoit/theme/theme.controller.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: BindingsBuilder(() {
         Get.put(ProjectController());
+        Get.put(TableController());
       }),
       theme: themeController.themeData,
       home: const ProjectsScreen(),

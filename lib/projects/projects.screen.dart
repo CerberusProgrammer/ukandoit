@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:ukandoit/projects/project.controller.dart';
 import 'package:ukandoit/projects/project.create.dart';
 import 'package:ukandoit/projects/project.edit.dart';
-import 'package:ukandoit/projects/project.screen.dart';
+import 'package:ukandoit/projects/project.view.dart';
 import 'package:ukandoit/theme/theme.controller.dart';
 import 'package:ukandoit/widgets/ukan.floatingbutton.dart';
 import 'package:ukandoit/widgets/ukan.task-card.dart';
